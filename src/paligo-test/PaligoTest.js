@@ -51,6 +51,20 @@ export const PaligoTest = () => {
 
                 <Form.Group>
                     <Row>
+                        <Form.Label>As a help icon - Opens a particular documentation section in a new browser tab</Form.Label>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Control type="email" placeholder="Enter email" />
+                        </Col>
+                        <Col>
+                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleContextHelpClick('index-en.html?contextId=abc123')}/>
+                        </Col>
+                    </Row>
+                </Form.Group>
+
+                <Form.Group>
+                    <Row>
                         <Form.Label>As a help icon - Opens documentation in a new browser window</Form.Label>
                     </Row>
                     <Row>
