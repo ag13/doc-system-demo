@@ -8,19 +8,14 @@ import Button from 'react-bootstrap/Button'
 import { QuestionCircle } from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal'
 import './PaligoTest.css'
+import { CSHelp, useCSHelp } from '../common'
 
 export const PaligoTest = () => {
 
+    const [, handleCSHelpClick] = useCSHelp('on-boarding.html')
+
     const [docSource, setDocSource] = useState('')
     const [showIframeDoc, setShowIframeDoc] = useState(false)
-
-    const handleContextHelpClick = (helpContextId) => {
-        window.open(`/out/en/${helpContextId}`, '_blank')
-    }
-
-    const handleContextHelpClickNewWindow = (helpContextId) => {
-        window.open(`/out/en/${helpContextId}`, 'Documentation', "height=800,width=800")
-    }
 
     const handleIframeDoc = (helpContextId) => {
         setDocSource(`/out/en/${helpContextId}`)
@@ -44,7 +39,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleContextHelpClick('introduction.html')}/>
+                            <CSHelp helpId="introduction.html" />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -58,7 +53,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleContextHelpClick('index-en.html?contextId=abc123')}/>
+                            <CSHelp helpId="abc123" isSection />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -72,7 +67,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleContextHelpClickNewWindow('introduction.html')}/>
+                            <CSHelp helpId="introduction.html" openNewWindow />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -85,7 +80,7 @@ export const PaligoTest = () => {
                         <Col>
                             <Form.Control type="email" placeholder="Enter email" />
                             <Form.Text className="text-muted" style={{textAlign: 'left'}}>
-                                Enter valid email address. <Button variant="link" size="sm" onClick={() => handleContextHelpClick('on-boarding.html')}>Click here</Button> for valid formats
+                                Enter valid email address. <Button variant="link" size="sm" onClick={handleCSHelpClick}>Click here</Button> for valid formats
                             </Form.Text>
                         </Col>
                     </Row>
