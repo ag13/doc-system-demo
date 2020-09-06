@@ -7,18 +7,16 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Button from 'react-bootstrap/Button'
 import { QuestionCircle } from 'react-bootstrap-icons';
 import Modal from 'react-bootstrap/Modal'
-import './PaligoTest.css'
+import './FlareTest.css'
 import { CSHelp, useCSHelp } from '../common'
 
-export const PaligoTest = () => {
+export const FlareTest = () => {
 
-    const [, handleCSHelpClick] = useCSHelp('on-boarding.html')
+    const [cshHelpUrl, handleCSHelpClick] = useCSHelp('Default.htm', false, false, false, true)
 
-    const [docSource, setDocSource] = useState('')
     const [showIframeDoc, setShowIframeDoc] = useState(false)
 
     const handleIframeDoc = (helpContextId) => {
-        setDocSource(`/paligo-doc/en/${helpContextId}`)
         setShowIframeDoc(true)
     }
 
@@ -28,7 +26,7 @@ export const PaligoTest = () => {
 
     return (
         <>
-            <div><b>Paligo Test</b></div>
+            <div><b>MadCap Flare Test</b></div>
             <Form>
                 <Form.Group>
                     <Row>
@@ -39,7 +37,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <CSHelp helpId="introduction.html" />
+                            <CSHelp helpId="Default.htm" hasLocale={false} isFlare />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -53,7 +51,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <CSHelp helpId="abc123" isSection />
+                            <CSHelp helpId="Default.htm#cshid=1007" hasLocale={false} isFlare />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -67,7 +65,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <CSHelp helpId="introduction.html" openNewWindow />
+                            <CSHelp helpId="Default.htm" openNewWindow hasLocale={false} isFlare />
                         </Col>
                     </Row>
                 </Form.Group>
@@ -88,7 +86,7 @@ export const PaligoTest = () => {
 
                 <Form.Group>
                     <Row>
-                        <Form.Label>As a help icon - displays a tooltip (Not using Paligo)</Form.Label>
+                        <Form.Label>As a help icon - displays a tooltip (Not using Flare)</Form.Label>
                     </Row>
                     <Row>
                         <Col>
@@ -121,7 +119,7 @@ export const PaligoTest = () => {
                             <Form.Control type="email" placeholder="Enter email" />
                         </Col>
                         <Col>
-                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleIframeDoc('design.html')}/>
+                            <QuestionCircle style={{cursor: 'hand'}} onClick={() => handleIframeDoc()}/>
                         </Col>
                     </Row>
                 </Form.Group>
@@ -132,7 +130,7 @@ export const PaligoTest = () => {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <iframe src={docSource} style={{width: '100%', height: '400px'}} title="doc" />
+                        <iframe src={`${cshHelpUrl}#cshid=1003`} style={{width: '100%', height: '400px'}} title="doc" />
                     </Modal.Body>
                 </Modal>
                 
